@@ -1,0 +1,30 @@
+.accordion-item {
+  margin-bottom: 1rem;
+}
+.accordion-button {
+  background-color: #f3f3f3;
+  color:#4fbc39;
+  font-weight: bold;
+}
+
+.accordion-button:focus {
+  border-color:#4fbc39;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #4fbc39;
+  color: #ffffff; 
+}
+.header {
+  background-color: #4fbc39;
+  color:#ffffff;
+  font-weight: bold;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  height: 40px;
+}
