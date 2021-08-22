@@ -1,5 +1,6 @@
 
 export const ClaimantData = ({register,errors}) => {
+
     return (
         <>
             <div class="my-3">
