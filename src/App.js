@@ -7,6 +7,8 @@ import { Form } from './componets/Form'
 import { useState } from 'react'
 import { showModal } from './utils/AlertConfirm'
 import { Comments } from './componets/Comments'
+import { Accident } from './componets/Accident'
+import { Causante } from './componets/Causante'
 
 
 function App() {
@@ -55,14 +57,14 @@ function App() {
                 databstarget="collapseTwo" 
                 databsparent="accordionExample"
                 botontitle="Datos del accidente*"
-                databody={<Comments register={register} errors={errors} /> }
+                databody={<Accident register={register} errors={errors} /> }
               />
               <AccordionItem 
                 heading="headingThree" 
                 databstarget="collapseThree" 
                 databsparent="accordionExample"
                 botontitle="Datos del causante*"
-                databody={<Comments register={register} errors={errors} /> }
+                databody={<Causante register={register} errors={errors} /> }
               />
               <AccordionItem 
                 heading="headingFour" 
