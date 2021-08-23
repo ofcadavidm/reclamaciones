@@ -13,7 +13,7 @@ import { Causante } from './componets/Causante'
 
 function App() {
 
-  const { register, handleSubmit,reset, formState: { errors ,isValid } } = useForm({mode:"all"})
+  const { register, handleSubmit,reset, control, formState: { errors ,isValid } } = useForm({mode:"all"})
   const [result, setResult] = useState("")
 
   const onSubmit = async (data) => {
@@ -57,7 +57,7 @@ function App() {
                 databstarget="collapseTwo" 
                 databsparent="accordionExample"
                 botontitle="Datos del accidente*"
-                databody={<Accident register={register} errors={errors} /> }
+                databody={<Accident register={register} errors={errors}  control={control}/> }
               />
               <AccordionItem 
                 heading="headingThree" 

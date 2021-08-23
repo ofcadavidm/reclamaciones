@@ -2,7 +2,7 @@ export const Causante = ({register,errors}) => {
    
     return (
         <>
-            <div class="mb-3">
+            <div class="my-3">
                 <select name="category"  
                     className={`form-control ${errors.category ? 'is-invalid' : ''}`}
                     {...register("category", {
@@ -34,10 +34,10 @@ export const Causante = ({register,errors}) => {
                 <div className="invalid-feedback">{errors.marca?.message}</div>
             </div>
             <div class="mb-3">
-                <input type="text" placeholder="matricula"  name="matricula" 
+                <input type="text" placeholder="Matrícula"  name="matricula" 
                     className={`form-control ${errors.matricula ? 'is-invalid' : ''}`} 
                     {...register("matricula", {
-                        required: "Matricula es obligatorio",
+                        required: "Matrícula es obligatorio",
                         minLength: { value: 7, message: "Ingresa al menos 7 carácteres" },
                         maxLength: { value: 8, message: "No puedes ingresar mas de 8 carácteres" }
                     })} 
@@ -45,7 +45,7 @@ export const Causante = ({register,errors}) => {
                 <div className="invalid-feedback">{errors.matricula?.message}</div>
             </div>
             <div class="mb-3">
-                <input type="text" placeholder="nropoliza"  name="nropoliza" 
+                <input type="text" placeholder="Nro. poliza"  name="nropoliza" 
                     className={`form-control ${errors.nropoliza ? 'is-invalid' : ''}`} 
                     {...register("nropoliza", {
                         required: "Nro. poliza es obligatorio",

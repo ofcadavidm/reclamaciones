@@ -12,9 +12,7 @@ export const Comments = ({register,errors}) => {
                     {...register("comments")}
                >                  
                </textarea>
-                
             </div>
-            
         </>
     )
 }

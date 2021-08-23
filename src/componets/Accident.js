@@ -1,20 +1,23 @@
-export const Accident = ({register,errors}) => {
+import { useState } from "react";
+import DatePicker from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css";
 
-    const vardate=new Date().toJSON().slice(0,10);
-    console.log(`fecha`, vardate)
-
+export const Accident = ({register,errors,control}) => {
+    const [startDate, setStartDate] = useState(new Date());
     return (
         <>
             <div class="my-3">
-
-                <label forHTML="start">Fecha accidente:</label>
-                <input type="date" id="dateaccident" name="dateaccident"
-                     value={vardate}
-                     
-                    className={`form-control ${errors.dateaccident ? 'is-invalid' : ''}`} 
-                />               
+                <label htmlFor="startDate" className="form-label">
+                    Fecha accidente
+                </label>
+                <DatePicker
+                    id="startDate"
+                    name="dateaccident"
+                    className="form-control"
+                    selected={startDate}
+                    onChange={(date) => setStartDate(date)}
+                />
             </div>
-
              <div class="mb-3">
                 <select name="country"  
                     className={`form-control ${errors.country ? 'is-invalid' : ''}`}
@@ -57,7 +60,6 @@ export const Accident = ({register,errors}) => {
                </textarea>
                <div className="invalid-feedback">{errors.accidentdetails?.message}</div>
             </div>
-            
         </>
     )
 }
