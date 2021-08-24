@@ -2,7 +2,7 @@ export const Comments = ({register,errors}) => {
 
     return (
         <>
-            <div class="my-3">
+            <div className="my-3">
                <textarea 
                     name="comments" 
                     placeholder="Escriba aquí"

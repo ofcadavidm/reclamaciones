@@ -9,6 +9,7 @@ import { showModal } from './utils/AlertConfirm'
 import { Comments } from './componets/Comments'
 import { Accident } from './componets/Accident'
 import { Causante } from './componets/Causante'
+import {FileUpload} from './componets/FileUpload'
 
 
 function App() {
@@ -42,7 +43,7 @@ function App() {
   return (
     <div className="container">
         <header className="header">Solicitud de Información</header>
-        <Form autocomplete = "off" onSubmit={handleSubmit(onSubmit)}>
+        <Form autoComplete = "off" onSubmit={handleSubmit(onSubmit)}>
 
             <Accordion id="accordionExample">
               <AccordionItem 
@@ -71,7 +72,7 @@ function App() {
                 databstarget="collapseFour" 
                 databsparent="accordionExample"
                 botontitle="Documentación*"
-                databody={<Comments register={register} errors={errors} /> }
+                databody={<FileUpload /> }
               />
               <AccordionItem 
                 heading="headingFive" 

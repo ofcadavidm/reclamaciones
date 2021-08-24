@@ -6,7 +6,7 @@ export const Accident = ({register,errors,control}) => {
     const [startDate, setStartDate] = useState(new Date());
     return (
         <>
-            <div class="my-3">
+            <div className="my-3">
                 <label htmlFor="startDate" className="form-label">
                     Fecha accidente
                 </label>
@@ -18,7 +18,7 @@ export const Accident = ({register,errors,control}) => {
                     onChange={(date) => setStartDate(date)}
                 />
             </div>
-             <div class="mb-3">
+             <div className="mb-3">
                 <select name="country"  
                     className={`form-control ${errors.country ? 'is-invalid' : ''}`}
                     {...register("country", {
@@ -31,7 +31,7 @@ export const Accident = ({register,errors,control}) => {
                 </select>
                 <div className="invalid-feedback">{errors.country?.message}</div>
             </div>
-            <div class="mb-3">
+            <div className="mb-3">
                 <select name="region"  
                     className={`form-control ${errors.region ? 'is-invalid' : ''}`}
                     {...register("region", {
@@ -46,7 +46,7 @@ export const Accident = ({register,errors,control}) => {
                 </select>
                 <div className="invalid-feedback">{errors.region?.message}</div>
             </div>
-            <div class="mb-3">
+            <div className="mb-3">
                <textarea 
                     name="accidentdetails" 
                     placeholder="Versión accidente*"

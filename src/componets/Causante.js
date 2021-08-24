@@ -2,7 +2,7 @@ export const Causante = ({register,errors}) => {
    
     return (
         <>
-            <div class="my-3">
+            <div className="my-3">
                 <select name="category"  
                     className={`form-control ${errors.category ? 'is-invalid' : ''}`}
                     {...register("category", {
@@ -18,7 +18,7 @@ export const Causante = ({register,errors}) => {
                 </select>
                 <div className="invalid-feedback">{errors.category?.message}</div>
             </div>
-            <div class="mb-3">
+            <div className="mb-3">
                 <select name="marca"  
                     className={`form-control ${errors.marca ? 'is-invalid' : ''}`}
                     {...register("marca", {
@@ -33,7 +33,7 @@ export const Causante = ({register,errors}) => {
                 </select>
                 <div className="invalid-feedback">{errors.marca?.message}</div>
             </div>
-            <div class="mb-3">
+            <div className="mb-3">
                 <input type="text" placeholder="Matrícula"  name="matricula" 
                     className={`form-control ${errors.matricula ? 'is-invalid' : ''}`} 
                     {...register("matricula", {
@@ -44,7 +44,7 @@ export const Causante = ({register,errors}) => {
                 />
                 <div className="invalid-feedback">{errors.matricula?.message}</div>
             </div>
-            <div class="mb-3">
+            <div className="mb-3">
                 <input type="text" placeholder="Nro. poliza"  name="nropoliza" 
                     className={`form-control ${errors.nropoliza ? 'is-invalid' : ''}`} 
                     {...register("nropoliza", {
