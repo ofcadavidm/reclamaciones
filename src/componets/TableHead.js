@@ -4,7 +4,7 @@ export const TableHead = ({files,urls}) => {
     return(
         <>
             <h4>Lista de documentos</h4>
-            <table className="table table-responsive table-bordered">
+            <table className="table table-responsive">
                 <thead>
                     <tr>
                         <th>Archivo</th>
@@ -16,7 +16,10 @@ export const TableHead = ({files,urls}) => {
                         urls.map((url, i) => (
                             <tr key={i}>
                                 <td>{files[i].name}</td>
-                                <td><a href={url} rel="noreferrer" target="_blank">Ver</a></td>
+                                <td>
+                                    <a  href={url} rel="noreferrer" target="_blank">Ver</a>
+                                    <a  href={url}>&nbsp;&nbsp;&nbsp;Eliminar</a>
+                                </td>
                             </tr>
                         ))
                     }
