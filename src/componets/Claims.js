@@ -28,43 +28,11 @@ export const Claims = () => {
           console.log(error.text);
       });
 	    e.target.reset()
-      alert("Mensaje enviado");
+      console.log("correo enviado");
   }
-  const  InsertarClaims = async (data,event) => {
-      const urlBase="https://localhost:44317/"
-      const endpoint="api​/Claim"
-      const url=urlBase.concat(endpoint)
-      console.log(`url`, url)
-      const config = {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data)
-      }
-    try {
-      const response = await fetch(url, config)
-      console.log("response ",response)
-      //const data = await response.json();
-      if (response.ok) {
-        console.log(`SendEmail`)
-        SendEmail(event)
-        message(
-          "success",
-          "Su declaración ha sido registrada",
-          "Por favor revise su buzón de correo "+ data.email,
-          event
-       )
-        return response
-      } 
-    }catch (error) {
-      console.log('Fetch error: ', error);
-      message("error","Su declaración no ha sido registrada","Por favor contacte un asesor ",event)
-    }
-  }
+  
 
-  const message = async (tipo,title,text,e) =>{
+  const message = async (tipo,title,text) =>{
       const response = await showModal({
       tipo: tipo,
       width: "25rem",
@@ -89,11 +57,12 @@ export const Claims = () => {
         setResult(JSON.stringify(data))
         const formatdate=moment(data.dateaccident).format()
         data.dateaccident=formatdate
-        console.log(`data`, data)
-        console.log("data.dateaccident",data.dateaccident)
-        console.log("data.dateaccident",data.formatdate)
-        console.log(`JSON.stringify(data)`, JSON.stringify(data))
-        InsertarClaims(data,e)
+        SendEmail(e)
+        message(
+          "success",
+          "Su declaración ha sido registrada",
+          "Por favor revise su buzón de correo "+ data.email
+       )
   }
 
   
