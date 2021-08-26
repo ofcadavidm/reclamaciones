@@ -1,6 +1,5 @@
-
-export const TableHead = ({files,urls}) => {
-
+export const TableHead = ({files,urls,deleteFile}) => {
+    
     return(
         <>
             <h4>Lista de documentos</h4>
@@ -18,7 +17,7 @@ export const TableHead = ({files,urls}) => {
                                 <td>{files[i].name}</td>
                                 <td>
                                     <a  href={url} rel="noreferrer" target="_blank">Ver</a>
-                                    <a  href={url}>&nbsp;&nbsp;&nbsp;Eliminar</a>
+                                    <button className="btn btn-link btn-sm" onClick={()=>{deleteFile(files[i].name,i)}}>&nbsp;&nbsp;&nbsp;Eliminar</button>
                                 </td>
                             </tr>
                         ))

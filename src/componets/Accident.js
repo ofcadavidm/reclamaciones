@@ -1,21 +1,27 @@
-import { useState } from "react";
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css";
+import { Controller } from 'react-hook-form'
 
 export const Accident = ({register,errors,control}) => {
-    const [startDate, setStartDate] = useState(new Date());
+    
     return (
         <>
             <div className="my-3">
                 <label htmlFor="startDate" className="form-label">
                     Fecha accidente
                 </label>
-                <DatePicker
-                    id="startDate"
-                    name="dateaccident"
-                    className="form-control"
-                    selected={startDate}
-                    onChange={(date) => setStartDate(date)}
+                <Controller
+                        control={control}
+                        name='dateaccident'
+                        render={({ field }) => (
+                        <DatePicker
+                            dateFormat="dd/MM/yyyy"
+                            placeholderText='Seleccione una fecha'
+                            onChange={(date) => field.onChange(date)}
+                            selected={field.value}
+                            className={"form-control"}
+                        />
+                    )}
                 />
             </div>
              <div className="mb-3">
@@ -25,7 +31,7 @@ export const Accident = ({register,errors,control}) => {
                         required: "País es obligatorio"
                     })}
                 >
-                    <option value="">Seleccione el país</option>
+                    <option value="">Seleccione el pais</option>
                     <option value="Colombia">Colombia</option>
                     <option value="Venezuela">Venezuela</option>
                 </select>
@@ -38,11 +44,15 @@ export const Accident = ({register,errors,control}) => {
                         required: "Región es obligatorio"
                     })}
                 >
-                    <option value="">Seleccione la región</option>
+                    <option value="">Seleccione la region</option>
                     <option value="Amazonas">Amazonas</option>
                     <option value="Antioquia">Antioquia</option>
                     <option value="Arauca">Arauca</option>
                     <option value="Atlántico">Atlántico</option>
+                    <option value="Anzoátegui">Anzoátegui</option>
+                    <option value="Apure">Apure</option>
+                    <option value="Aragua">Aragua</option>
+                    <option value="Barinas">Barinas</option>
                 </select>
                 <div className="invalid-feedback">{errors.region?.message}</div>
             </div>

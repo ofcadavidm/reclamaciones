@@ -9,30 +9,60 @@ export const FileUpload = () => {
     const [urls, setUrls] = useState([]);
     const [progress, setProgress] = useState(0);
     const [message, setMessage] = useState("");
+
+    const deleteFile = (deleteFile,index) =>{
+        const storageRef = storage.ref(`documentos/${deleteFile}`)
+        storageRef.delete().then(function() {
+           console.log(`${deleteFile}  File deleted successfully`)
+           const arrayFiltradoUrls = urls.filter( (item,i) => (i !==index))
+           setUrls(arrayFiltradoUrls)
+           const arrayFiltradoFiles = files.filter( item => (item.name !== deleteFile) )
+           setFiles(arrayFiltradoFiles)
+           setMessage('Archivo Eliminado!!')
+        }).catch(function(error) {
+            console.log(`Ha ocurrido un error al eliminar el archivo ${deleteFile}: ${error.message}`)
+        });
+    }
   
     const handleChange = (event) => {
         setMessage("")
         const file = event.target.files[0]
-        const storageRef = storage.ref(`documentos/${file.name}`)
-        const task = storageRef.put(file)
-        setFiles([ ...files,file])
-        task.on('state_changed', (snapshot) => {
-          let progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100 );
-          setProgress(progress);
-        }, (error) => {
-          console.error(error.message)
-          setMessage(`Ha ocurrido un error; ${error.message}`)
-        }, async () => {
-            console.log("File uploaded")
-            await storageRef.getDownloadURL().then((url) => {
-                setMessage('Archivo Subido!!')
-                setUrls([ ...urls,url ])
-                setProgress(0);
-            }).catch(function(error) {
-                console.log("error")
-                setMessage(`Ha ocurrido un error; ${error.message}`)
-            });
-        })
+        if (file){
+            const storageRef = storage.ref(`documentos/${file.name}`)
+            const task = storageRef.put(file)
+            setFiles([ ...files,file])
+            task.on('state_changed', (snapshot) => {
+            let progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100 );
+            setProgress(progress);
+            }, (error) => {
+            console.error(error.message)
+            setMessage(`Ha ocurrido un error: ${error.message}`)
+            switch (error.code) {
+                case 'storage/unauthorized':
+                    setMessage(`No tienes permisos para accesar el archivo: ${error.message}`)
+                break;
+                case 'storage/canceled':
+                    setMessage(`Proceso Canelado: ${error.message}`)
+                break;
+                case 'storage/unknown':
+                    setMessage(`Error de servidor: ${error.message}`)
+                break;
+                default:
+                    setMessage(`Error : ${error.message}`)
+            }
+
+            }, async () => {
+                console.log("File uploaded")
+                await storageRef.getDownloadURL().then((url) => {
+                    setMessage('Archivo Subido!!')
+                    setUrls([ ...urls,url ])
+                    setProgress(0);
+                }).catch(function(error) {
+                    console.log("error")
+                    setMessage(`Ha ocurrido un error; ${error.message}`)
+                });
+            })
+        }
     }
 
     return (
@@ -49,7 +79,7 @@ export const FileUpload = () => {
                 />
             </div>
             <div>{message}</div>
-            <TableHead files={files} urls={urls} />
+            <TableHead files={files} urls={urls} deleteFile={deleteFile} />
         </div>
     );
   };
